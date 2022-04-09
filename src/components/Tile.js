@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { leftClick, rightClick } from '../reducers/boardReducer'
+import { clickTile, flagTile } from '../reducers/boardReducer'
 
 const TileDiv = styled.div`
   position: relative;
@@ -36,12 +36,12 @@ const Tile = ({ data }) => {
   const dispatch = useDispatch()
 
   const handleLeftClick = (x, y) => {
-    dispatch(leftClick(x, y))
+    dispatch(clickTile(x, y))
   }
 
   const handleRightClick = (e, x, y) => {
     e.preventDefault()
-    dispatch(rightClick(x, y))
+    dispatch(flagTile(x, y))
   }
 
   switch (data.state) {
@@ -65,7 +65,7 @@ const Tile = ({ data }) => {
       return (
         <TileDiv>
           <TileText>
-            {data.is_mine ? 'M' : (data.neighbors !== 0) ? data.neighbors : ''}
+            {data.isMine ? 'M' : (data.neighbors !== 0) ? data.neighbors : ''}
           </TileText>
         </TileDiv>
       )
