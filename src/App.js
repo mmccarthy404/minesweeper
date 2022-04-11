@@ -4,7 +4,7 @@ import Game from './components/Game'
 
 const App = () => {
   return (
-    <div onContextMenu={(e) => e.preventDefault()}>
+    <div>
       <Game />
     </div>
   )

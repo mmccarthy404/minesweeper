@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { newGame } from '../reducers/gameReducer'
+import styled from 'styled-components'
 
+import { newGame } from '../reducers/gameReducer'
 import Board from './Board'
+
+const GameDiv = styled.div`
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+ -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome, Opera and Firefox */
+`
 
 const xDim = 16
 const yDim = 16
@@ -50,12 +61,12 @@ const Game = () => {
    }
 
   return (
-    <div>
+    <GameDiv onContextMenu={(e) => e.preventDefault()}>
       <Counter digits={game.mineCount - game.flagCount} />
       <button onClick={() => handleNewGame()}>{ game.status === 'win' ? ':D' : game.status !== 'lose' ? ':)' : ':(' }</button>
       <Counter digits={time} />
       <Board />
-    </div>
+    </GameDiv>
   )
 }
 

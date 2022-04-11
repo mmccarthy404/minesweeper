@@ -127,6 +127,7 @@ const _clickCell = (state, action) => {
   newState.moves = [...newState.moves, {x: action.data.x, y: action.data.y, time: action.data.time}]
 
   if (_isGameLost(newState.board, action.data.x, action.data.y)) {
+    newState.board[action.data.x][action.data.y].state = 'opened'
     newState.status = 'lose'
     return newState
   }
