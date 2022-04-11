@@ -2,25 +2,31 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import Tile from './Tile'
+import Cell from './Cell'
 
 const BoardDiv = styled.div`
-  width: 200px;
-  height: 200px;
+  width: ${props => props.yDim * 20}px;
+  height: ${props => props.xDim * 20}px;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(${props => props.yDim}, 20px);
+  grid-template-rows: repeat(${props => props.xDim}, 20px);
+  grid-auto-flow: row;
 `
 
 const Board = () => {
-  const boardState = useSelector(state => state.board)
+  const game = useSelector(state => state.game)
 
   return (
-    <BoardDiv>
-      {boardState.map((i, x) => {
+    <BoardDiv xDim={game.xDim} yDim={game.yDim}>
+      {game.board.map((i, x) => {
         return (
           i.map((j, y) => {
             return (
-              <Tile 
-                key={boardState[x][y].id}
-                data={boardState[x][y]}
+              <Cell 
+                key={game.board[x][y].id}
+                gameStatus={game.status}
+                cellStatus={game.board[x][y]}
               />
             )
           })

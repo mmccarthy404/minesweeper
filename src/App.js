@@ -1,23 +1,11 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 
-import Board from './components/Board'
-import { initBoard } from './reducers/boardReducer'
-
-const xDim = 10
-const yDim = 10
-const mineCount = 10
+import Game from './components/Game'
 
 const App = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(initBoard(xDim, yDim, mineCount))
-   }, [dispatch])
-
   return (
-    <div>
-      <Board />
+    <div onContextMenu={(e) => e.preventDefault()}>
+      <Game />
     </div>
   )
 }
